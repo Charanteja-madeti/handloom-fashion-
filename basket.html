@@ -183,13 +183,20 @@ cardRadio.addEventListener('change', () => cardDetails.style.display='block');
 
 // Payment submission
 // Payment submission
+// Payment submission
 document.getElementById('payment-form').addEventListener('submit', e=>{
   e.preventDefault();
   const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
 
   if(selectedPayment==='Cash on Delivery'){
-    // Open Google Form in new tab
-    window.open("https://docs.google.com/forms/d/e/FORM_ID/viewform", "_blank");
+    // Open Google Form in new tab FIRST
+    window.open("https://docs.google.com/forms/d/e/1FAIpQLSdaSP2IVftXz65jrsXqexkHiaBoRO8Yq75Z1IDysmTPwK09gA/viewform?usp=header", "_blank");
+
+    // Then clear basket & show message
+    localStorage.removeItem('basket');
+    loadBasket();
+    document.getElementById('payment-message').textContent = `Payment method "${selectedPayment}" selected. Please fill the Google Form to complete your order.`;
+    return; // stop here so card logic doesn’t run
   }
 
   if(selectedPayment==='Credit/Debit Card'){
@@ -210,10 +217,12 @@ document.getElementById('payment-form').addEventListener('submit', e=>{
 });
 
 
+
 // Initialize
 loadBasket();
 </script>
 
 </body>
 </html>
+
 
