@@ -86,10 +86,6 @@
       <div style="margin-bottom:15px; font-size:1.1rem;">
         <input type="radio" name="payment" id="cod" value="Cash on Delivery" checked>
         <label for="cod">Cash on Delivery</label>
-        <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdaSP2IVftXz65jrsXqexkHiaBoRO8Yq75Z1IDysmTPwK09gA/viewform?usp=header', '_blank')">
-  Cash on Delivery
-</button>
-
       </div>
       <div style="margin-bottom:15px; font-size:1.1rem;">
         <input type="radio" name="payment" id="card" value="Credit/Debit Card">
@@ -186,20 +182,13 @@ codRadio.addEventListener('change', () => cardDetails.style.display='none');
 cardRadio.addEventListener('change', () => cardDetails.style.display='block');
 
 // Payment submission
-// Payment submission
-// Payment submission
 document.getElementById('payment-form').addEventListener('submit', e=>{
   e.preventDefault();
   const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
 
   if(selectedPayment==='Cash on Delivery'){
-    // Open Google Form in new tab FIRST
-    window.open("https://docs.google.com/forms/d/e/1FAIpQLSdaSP2IVftXz65jrsXqexkHiaBoRO8Yq75Z1IDysmTPwK09gA/viewform?usp=header", "_blank");
-
-    // Then clear basket & show message
-    localStorage.removeItem('basket');
-    loadBasket();
-    document.getElementById('payment-message').textContent = `Payment method "${selectedPayment}" selected. Please fill the Google Form to complete your order.`;
+    // Redirect to deliver.html with your custom form
+    window.location.href = 'deliver.html';
     return; // stop here so card logic doesn’t run
   }
 
@@ -220,8 +209,6 @@ document.getElementById('payment-form').addEventListener('submit', e=>{
   document.getElementById('payment-message').textContent = `Payment method "${selectedPayment}" selected. Thank you for your order!`;
 });
 
-
-
 // Initialize
 loadBasket();
 </script>
@@ -240,7 +227,3 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 </body>
 </html>
-
-
-
-
