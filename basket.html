@@ -87,6 +87,13 @@
         <input type="radio" name="payment" id="cod" value="Cash on Delivery" checked>
         <label for="cod">Cash on Delivery</label>
       </div>
+
+      <!-- New Cash on Delivery button -->
+      <button type="button" onclick="window.location.href='deliver.html'" 
+              style="background:#ff8c00; color:#fff; padding:12px; border:none; border-radius:25px; font-weight:600; cursor:pointer; width:100%; margin-bottom:15px;">
+        Cash on Delivery
+      </button>
+
       <div style="margin-bottom:15px; font-size:1.1rem;">
         <input type="radio" name="payment" id="card" value="Credit/Debit Card">
         <label for="card">Credit/Debit Card</label>
@@ -155,75 +162,4 @@ function attachEvents() {
     input.addEventListener('change', () => {
       const index = input.dataset.index;
       let basket = JSON.parse(localStorage.getItem('basket'));
-      if(input.value < 1) input.value = 1;
-      basket[index].quantity = parseInt(input.value);
-      localStorage.setItem('basket', JSON.stringify(basket));
-      updateTotals();
-    });
-  });
-
-  document.querySelectorAll('.remove-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const index = btn.dataset.index;
-      let basket = JSON.parse(localStorage.getItem('basket'));
-      basket.splice(index,1);
-      localStorage.setItem('basket', JSON.stringify(basket));
-      loadBasket();
-    });
-  });
-}
-
-// Payment method toggle
-const codRadio = document.getElementById('cod');
-const cardRadio = document.getElementById('card');
-const cardDetails = document.getElementById('card-details');
-
-codRadio.addEventListener('change', () => cardDetails.style.display='none');
-cardRadio.addEventListener('change', () => cardDetails.style.display='block');
-
-// Payment submission
-document.getElementById('payment-form').addEventListener('submit', e=>{
-  e.preventDefault();
-  const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
-
-  if(selectedPayment==='Cash on Delivery'){
-    // Redirect to deliver.html with your custom form
-    window.location.href = 'deliver.html';
-    return; // stop here so card logic doesn’t run
-  }
-
-  if(selectedPayment==='Credit/Debit Card'){
-    const cardNumber=document.getElementById('card-number').value;
-    const cardName=document.getElementById('card-name').value;
-    const cardExpiry=document.getElementById('card-expiry').value;
-    const cardCvv=document.getElementById('card-cvv').value;
-
-    if(!cardNumber || !cardName || !cardExpiry || !cardCvv){
-      alert('Please fill all card details.');
-      return;
-    }
-  }
-
-  localStorage.removeItem('basket');
-  loadBasket();
-  document.getElementById('payment-message').textContent = `Payment method "${selectedPayment}" selected. Thank you for your order!`;
-});
-
-// Initialize
-loadBasket();
-</script>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/68d61e4927d62b194f180193/1j626ck0e';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-</body>
-</html>
+      if(input.value < 1) input.value
