@@ -93,6 +93,7 @@
               style="background:#ff8c00; color:#fff; padding:12px; border:none; border-radius:25px; font-weight:600; cursor:pointer; width:100%; margin-bottom:15px;">
         Cash on Delivery
       </button>
+      <button onclick="window.location.href='delivery.html'">Proceed to Delivery</button>
 
       <div style="margin-bottom:15px; font-size:1.1rem;">
         <input type="radio" name="payment" id="card" value="Credit/Debit Card">
@@ -163,3 +164,4 @@ function attachEvents() {
       const index = input.dataset.index;
       let basket = JSON.parse(localStorage.getItem('basket'));
       if(input.value < 1) input.value
+
