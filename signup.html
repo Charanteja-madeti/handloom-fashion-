@@ -3,224 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Handloom Heritage | Sign Up</title>
+  <title>Sign Up - Handloom Heritage</title>
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #ffb347, #e07b39); /* same orange theme */
-      overflow: hidden;
+      background: linear-gradient(135deg, #ffb347, #e07b39);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
     }
-
-    /* Moving background text/icons */
     .floating {
       position: absolute;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 600;
       color: rgba(255, 255, 255, 0.25);
-      user-select: none;
-      pointer-events: none;
       animation: float 18s linear infinite;
     }
-
     @keyframes float {
-      0% {transform: translate(0, 0);}
-      25% {transform: translate(200px, -150px);}
-      50% {transform: translate(-100px, 150px);}
-      75% {transform: translate(-200px, -100px);}
-      100% {transform: translate(0, 0);}
+      0% { transform: translate(0,0); }
+      25% { transform: translate(200px,-100px); }
+      50% { transform: translate(-100px,150px); }
+      75% { transform: translate(-200px,-100px); }
+      100% { transform: translate(0,0); }
     }
-
-    /* positions for the floating icons */
-    .floating:nth-child(1) { top: 10%; left: 20%; animation-duration: 22s;}
-    .floating:nth-child(2) { top: 60%; left: 10%; animation-duration: 26s;}
-    .floating:nth-child(3) { top: 30%; left: 70%; animation-duration: 20s;}
-    .floating:nth-child(4) { top: 80%; left: 60%; animation-duration: 24s;}
-    .floating:nth-child(5) { top: 40%; left: 40%; animation-duration: 28s;}
-
-    /* Signup card */
-    .signup-container {
-      position: relative;
-      background-color: #fff8ef;
-      padding: 40px 35px;
+    .floating:nth-child(1){top:10%;left:20%;}
+    .floating:nth-child(2){top:60%;left:10%;}
+    .floating:nth-child(3){top:30%;left:70%;}
+    .floating:nth-child(4){top:80%;left:60%;}
+    .floating:nth-child(5){top:40%;left:40%;}
+    .signup-box {
+      background: #fff8ef;
+      padding: 35px;
       border-radius: 15px;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
-      width: 350px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      width: 330px;
+      z-index: 5;
       text-align: center;
-      z-index: 10;
     }
-
-    h1 {
-      color: #b34700;
-      margin-bottom: 10px;
-      font-size: 28px;
-      letter-spacing: 1px;
+    h2 { color: #b34700; margin-bottom: 10px; }
+    label { display: block; text-align: left; margin-top: 10px; color: #5a2f00; }
+    input {
+      width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #d9a06a;
     }
-
-    p {
-      color: #6b3e00;
-      margin-bottom: 25px;
-      font-size: 14px;
-    }
-
-    .form-group {
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      font-size: 14px;
-      color: #5a2f00;
-      margin-bottom: 6px;
-    }
-
-    input[type="email"],
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #d9a06a;
-      border-radius: 8px;
-      background-color: #fffdf9;
-      font-size: 14px;
-      color: #4a2b00;
-      transition: all 0.3s ease;
-    }
-
-    input:focus {
-      border-color: #b34700;
-      outline: none;
-      box-shadow: 0 0 8px rgba(179, 71, 0, 0.3);
-    }
-
     button {
-      width: 100%;
-      padding: 12px;
-      background-color: #b34700;
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
+      margin-top: 20px; width: 100%; padding: 10px;
+      background: #b34700; color: white; border: none; border-radius: 8px; cursor: pointer;
     }
-
-    button:hover {
-      background-color: #e07b39;
-      transform: translateY(-2px);
-    }
-
-    .links {
-      margin-top: 20px;
-      font-size: 13px;
-    }
-
-    .links a {
-      color: #b34700;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .links a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 480px) {
-      .signup-container {
-        width: 90%;
-        padding: 30px 25px;
-      }
-      h1 {
-        font-size: 24px;
-      }
-    }
+    button:hover { background: #e07b39; }
+    a { color: #b34700; text-decoration: none; }
   </style>
 </head>
 <body>
-
-  <!-- moving background text/icons -->
   <div class="floating">🧵 Handloom</div>
   <div class="floating">🧵 Handloom</div>
   <div class="floating">🧵 Handloom</div>
   <div class="floating">🧵 Handloom</div>
   <div class="floating">🧵 Handloom</div>
 
-  <div class="signup-container">
-    <h1>Create Account</h1>
-    <p>Join the Handloom Heritage family 🪡</p>
-
-    <form id="signupForm" onsubmit="return false;">
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="example@xhandloom.com" required />
-      </div>
-
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" placeholder="Only alphabets allowed" required />
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Letters & numbers only" required />
-      </div>
-
-      <div class="form-group">
-        <label for="confirm">Confirm Password</label>
-        <input type="password" id="confirm" placeholder="Re-enter your password" required />
-      </div>
-
-      <button id="signupBtn">Sign Up</button>
-
-      <div class="links">
-        <p>Already have an account? <a href="index.html" id="loginLink">Login here</a></p>
-      </div>
+  <div class="signup-box">
+    <h2>Create Account</h2>
+    <form id="signupForm">
+      <label>Email</label>
+      <input type="email" id="email" placeholder="example@xhandloom.com" required />
+      <label>Username</label>
+      <input type="text" id="username" placeholder="Only alphabets" required />
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Letters & numbers" required />
+      <label>Confirm Password</label>
+      <input type="password" id="confirm" placeholder="Re-enter password" required />
+      <button type="submit">Sign Up</button>
     </form>
+    <p style="margin-top:15px;">Already have an account? <a href="index.html">Login here</a></p>
   </div>
 
   <script>
-    document.getElementById("signupBtn").addEventListener("click", function (e) {
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
       e.preventDefault();
-
-      const email = document.getElementById("email").value.trim();
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const confirm = document.getElementById("confirm").value.trim();
-
+      const email = email.value.trim();
+      const user = username.value.trim();
+      const pass = password.value.trim();
+      const conf = confirm.value.trim();
       const emailPattern = /^[a-zA-Z0-9._%+-]+@xhandloom\.com$/;
-      const usernamePattern = /^[A-Za-z]+$/;
-      const passwordPattern = /^[A-Za-z0-9]+$/;
+      const userPattern = /^[A-Za-z]+$/;
+      const passPattern = /^[A-Za-z0-9]+$/;
 
-      if (!emailPattern.test(email)) {
-        alert("❌ Invalid Email. It must end with '@xhandloom.com'");
-        return;
-      }
-      if (!usernamePattern.test(username)) {
-        alert("❌ Username must contain only alphabets (A–Z or a–z).");
-        return;
-      }
-      if (!passwordPattern.test(password)) {
-        alert("❌ Password must contain only letters and numbers (A–Z, 0–9).");
-        return;
-      }
-      if (password !== confirm) {
-        alert("❌ Passwords do not match. Please check again.");
-        return;
-      }
+      if (!emailPattern.test(email)) return alert("Email must end with @xhandloom.com");
+      if (!userPattern.test(user)) return alert("Username must have only alphabets");
+      if (!passPattern.test(pass)) return alert("Password must be letters and numbers only");
+      if (pass !== conf) return alert("Passwords do not match!");
 
-      alert("✅ Registration successful! Redirecting to login page...");
-      window.location.href = "index.html"; // redirect to login page
-    });
-
-    // direct link to login
-    document.getElementById("loginLink").addEventListener("click", function (e) {
-      e.preventDefault();
+      alert("Signup successful! Redirecting to login...");
       window.location.href = "index.html";
     });
   </script>
