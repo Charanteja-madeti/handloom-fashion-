@@ -1,0 +1,89 @@
+body {
+  background-color: #f4ede0;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    url("https://i.imgur.com/z7BctvX.jpg"); /* Optional handloom fabric texture */
+  background-size: cover;
+  background-position: center;
+}
+
+.login-card {
+  background-color: #fffaf3;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  width: 350px;
+  text-align: center;
+  border-top: 6px solid #a0522d;
+}
+
+.title {
+  color: #6b2e1f;
+  font-family: 'Merriweather', serif;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #5a4d41;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin: 8px 0 4px 0;
+  color: #4a3b31;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bfa38a;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+  background-color: #fff8f0;
+}
+
+input:focus {
+  border-color: #a0522d;
+}
+
+.remember-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-bottom: 15px;
+  color: #4a3b31;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #a0522d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #8b3e1c;
+}
