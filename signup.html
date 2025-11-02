@@ -1,59 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - Handloom Heritage</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signup - Handloom Heritage</title>
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
       background: linear-gradient(135deg, #ffb347, #e07b39);
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
     }
     .floating {
       position: absolute;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 600;
       color: rgba(255, 255, 255, 0.25);
       animation: float 18s linear infinite;
+      user-select: none;
     }
     @keyframes float {
-      0% { transform: translate(0,0); }
-      25% { transform: translate(200px,-100px); }
-      50% { transform: translate(-100px,150px); }
-      75% { transform: translate(-200px,-100px); }
-      100% { transform: translate(0,0); }
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(200px, -150px); }
+      50% { transform: translate(-100px, 150px); }
+      75% { transform: translate(-200px, -100px); }
+      100% { transform: translate(0, 0); }
     }
-    .floating:nth-child(1){top:10%;left:20%;}
-    .floating:nth-child(2){top:60%;left:10%;}
-    .floating:nth-child(3){top:30%;left:70%;}
-    .floating:nth-child(4){top:80%;left:60%;}
-    .floating:nth-child(5){top:40%;left:40%;}
-    .signup-box {
-      background: #fff8ef;
-      padding: 35px;
+    .floating:nth-child(1) { top: 10%; left: 20%; animation-duration: 22s;}
+    .floating:nth-child(2) { top: 60%; left: 10%; animation-duration: 26s;}
+    .floating:nth-child(3) { top: 30%; left: 70%; animation-duration: 20s;}
+    .floating:nth-child(4) { top: 80%; left: 60%; animation-duration: 24s;}
+    .floating:nth-child(5) { top: 40%; left: 40%; animation-duration: 28s;}
+    .signup-container {
+      position: relative;
+      background-color: #fff8ef;
+      padding: 40px 35px;
       border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-      width: 330px;
-      z-index: 5;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+      width: 350px;
       text-align: center;
+      z-index: 10;
     }
-    h2 { color: #b34700; margin-bottom: 10px; }
-    label { display: block; text-align: left; margin-top: 10px; color: #5a2f00; }
+    h1 {
+      color: #b34700;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    label {
+      display: block;
+      text-align: left;
+      font-size: 14px;
+      color: #5a2f00;
+      margin-top: 15px;
+    }
     input {
-      width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #d9a06a;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #d9a06a;
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+    input:focus {
+      border-color: #b34700;
+      outline: none;
     }
     button {
-      margin-top: 20px; width: 100%; padding: 10px;
-      background: #b34700; color: white; border: none; border-radius: 8px; cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #b34700;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
-    button:hover { background: #e07b39; }
-    a { color: #b34700; text-decoration: none; }
+    button:hover { background-color: #e07b39; }
+    .links {
+      margin-top: 15px;
+    }
+    .links a {
+      color: #b34700;
+      text-decoration: none;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
@@ -63,44 +96,64 @@
   <div class="floating">🧵 Handloom</div>
   <div class="floating">🧵 Handloom</div>
 
-  <div class="signup-box">
-    <h2>Create Account</h2>
+  <div class="signup-container">
+    <h1>Create Account</h1>
     <form id="signupForm">
       <label>Email</label>
       <input type="email" id="email" placeholder="example@xhandloom.com" required />
+
       <label>Username</label>
       <input type="text" id="username" placeholder="Only alphabets" required />
+
       <label>Password</label>
-      <input type="password" id="password" placeholder="Letters & numbers" required />
+      <input type="password" id="password" placeholder="Letters & numbers only" required />
+
       <label>Confirm Password</label>
-      <input type="password" id="confirm" placeholder="Re-enter password" required />
+      <input type="password" id="confirm" placeholder="Re-enter your password" required />
+
       <button type="submit">Sign Up</button>
     </form>
-    <p style="margin-top:15px;">Already have an account? <a href="index.html">Login here</a></p>
+    <div class="links">
+      Already have an account? <a href="index.html">Login here</a>
+    </div>
   </div>
 
   <script>
-    document.getElementById("signupForm").addEventListener("submit", function (e) {
+    const signupForm = document.getElementById("signupForm");
+
+    signupForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const email = document.getElementById("email").value.trim();
-      const user = document.getElementById("username").value.trim();
-      const pass = document.getElementById("password").value.trim();
-      const conf = document.getElementById("confirm").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirm = document.getElementById("confirm").value.trim();
 
       const emailPattern = /^[a-zA-Z0-9._%+-]+@xhandloom\.com$/;
-      const userPattern = /^[A-Za-z]+$/;
-      const passPattern = /^[A-Za-z0-9]+$/;
+      const usernamePattern = /^[A-Za-z]+$/;
+      const passwordPattern = /^[A-Za-z0-9]+$/;
 
-      if (!emailPattern.test(email)) return alert("Email must end with @xhandloom.com");
-      if (!userPattern.test(user)) return alert("Username must have only alphabets");
-      if (!passPattern.test(pass)) return alert("Password must be letters and numbers only");
-      if (pass !== conf) return alert("Passwords do not match!");
+      if (!emailPattern.test(email)) {
+        alert("❌ Email must end with @xhandloom.com");
+        return;
+      }
+      if (!usernamePattern.test(username)) {
+        alert("❌ Username must contain only alphabets");
+        return;
+      }
+      if (!passwordPattern.test(password)) {
+        alert("❌ Password must contain only letters and numbers");
+        return;
+      }
+      if (password !== confirm) {
+        alert("❌ Passwords do not match");
+        return;
+      }
 
-      // store credentials in localStorage
-      localStorage.setItem("handloomUser", JSON.stringify({ email, user, pass }));
+      // Store signup info in localStorage
+      localStorage.setItem("handloomUser", JSON.stringify({ email, username, password }));
 
-      alert("Signup successful! Redirecting to login...");
+      alert("✅ Signup successful! Redirecting to login page...");
       window.location.href = "index.html";
     });
   </script>
