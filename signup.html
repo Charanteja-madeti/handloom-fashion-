@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Handloom Heritage – Sign Up</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f4ede0;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+    }
+
+    .signup-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+        url("https://i.imgur.com/z7BctvX.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .signup-card {
+      background-color: #fffaf3;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      width: 380px;
+      text-align: center;
+      border-top: 6px solid #a0522d;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .title {
+      color: #6b2e1f;
+      font-family: 'Merriweather', serif;
+      margin-bottom: 5px;
+      font-size: 26px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #5a4d41;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin: 8px 0 4px 0;
+      color: #4a3b31;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #bfa38a;
+      border-radius: 8px;
+      outline: none;
+      margin-bottom: 10px;
+      font-size: 14px;
+      background-color: #fff8f0;
+      transition: border 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #a0522d;
+    }
+
+    .remember-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      margin-bottom: 15px;
+      color: #4a3b31;
+    }
+
+    .signup-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #a0522d;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .signup-btn:hover {
+      background-color: #8b3e1c;
+      transform: translateY(-2px);
+    }
+
+    .login-link {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #4a3b31;
+    }
+
+    .login-link a {
+      color: #a0522d;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 450px) {
+      .signup-card {
+        width: 90%;
+        padding: 30px;
+      }
+      .title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <div class="signup-card">
+      <h2 class="title">Handloom Heritage</h2>
+      <p class="subtitle">Create your account below</p>
+
+      <form id="signupForm">
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Enter your full name" required />
+
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Choose a username" required />
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
+
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm your password" required />
+
+        <div class="remember-row">
+          <input type="checkbox" id="remember" />
+          <span>Remember Me</span>
+        </div>
+
+        <button type="submit" class="signup-btn">Sign Up</button>
+      </form>
+
+      <p class="login-link">
+        Already have an account? <a href="login.html">Login here</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+      if (!name || !email || !username || !password || !confirmPassword) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      alert("Registration Successful!");
+      window.location.href = "login.html"; // Redirect to login page
+    });
+  </script>
+</body>
+</html>
