@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - Handloom Heritage</title>
   <style>
     body {
@@ -82,10 +82,12 @@
   <script>
     document.getElementById("signupForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      const email = email.value.trim();
-      const user = username.value.trim();
-      const pass = password.value.trim();
-      const conf = confirm.value.trim();
+
+      const email = document.getElementById("email").value.trim();
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
+      const conf = document.getElementById("confirm").value.trim();
+
       const emailPattern = /^[a-zA-Z0-9._%+-]+@xhandloom\.com$/;
       const userPattern = /^[A-Za-z]+$/;
       const passPattern = /^[A-Za-z0-9]+$/;
@@ -94,6 +96,9 @@
       if (!userPattern.test(user)) return alert("Username must have only alphabets");
       if (!passPattern.test(pass)) return alert("Password must be letters and numbers only");
       if (pass !== conf) return alert("Passwords do not match!");
+
+      // store credentials in localStorage
+      localStorage.setItem("handloomUser", JSON.stringify({ email, user, pass }));
 
       alert("Signup successful! Redirecting to login...");
       window.location.href = "index.html";
