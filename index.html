@@ -9,19 +9,49 @@
       margin: 0;
       font-family: "Poppins", sans-serif;
       background: linear-gradient(135deg, #ffb347, #e07b39);
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
 
+    /* Moving background text/icons */
+    .floating {
+      position: absolute;
+      font-size: 22px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.25);
+      user-select: none;
+      pointer-events: none;
+      animation: float 18s linear infinite;
+    }
+
+    @keyframes float {
+      0% {transform: translate(0, 0);}
+      25% {transform: translate(200px, -150px);}
+      50% {transform: translate(-100px, 150px);}
+      75% {transform: translate(-200px, -100px);}
+      100% {transform: translate(0, 0);}
+    }
+
+    /* Different speeds/directions */
+    .floating:nth-child(1) { top: 10%; left: 20%; animation-duration: 22s;}
+    .floating:nth-child(2) { top: 60%; left: 10%; animation-duration: 26s;}
+    .floating:nth-child(3) { top: 30%; left: 70%; animation-duration: 20s;}
+    .floating:nth-child(4) { top: 80%; left: 60%; animation-duration: 24s;}
+    .floating:nth-child(5) { top: 40%; left: 40%; animation-duration: 28s;}
+
+    /* Login card */
     .login-container {
+      position: relative;
       background-color: #fff8ef;
       padding: 40px 35px;
       border-radius: 15px;
       box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
       width: 350px;
       text-align: center;
+      z-index: 10;
     }
 
     h1 {
@@ -121,14 +151,22 @@
   </style>
 </head>
 <body>
+
+  <!-- moving background text/icons -->
+  <div class="floating">🧵 Handloom</div>
+  <div class="floating">🧵 Handloom</div>
+  <div class="floating">🧵 Handloom</div>
+  <div class="floating">🧵 Handloom</div>
+  <div class="floating">🧵 Handloom</div>
+
   <div class="login-container">
-    <h1>Handloom products</h1>
+    <h1>Handloom Heritage</h1>
     <p>Login to continue your journey through tradition 🌾</p>
 
     <form id="loginForm" onsubmit="return false;">
       <div class="form-group">
         <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="example@xhandloom" required />
+        <input type="email" id="email" placeholder="example@xhandloom.com" required />
       </div>
       <div class="form-group">
         <label for="username">Username</label>
@@ -157,22 +195,20 @@
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
 
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@xhandloom$/;
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@xhandloom\.com$/;
       const usernamePattern = /^[A-Za-z]+$/;
       const passwordPattern = /^[A-Za-z0-9]+$/;
 
       if (!emailPattern.test(email)) {
-        alert("❌ Email must end with '@xhandloom' (example: user@xhandloom)");
+        alert("❌ Invalid Email. It must end with '@xhandloom.com'");
         return;
       }
-
       if (!usernamePattern.test(username)) {
-        alert("❌ Username should contain only alphabets (A–Z or a–z).");
+        alert("❌ Username must contain only alphabets (A–Z or a–z).");
         return;
       }
-
       if (!passwordPattern.test(password)) {
-        alert("❌ Password should contain only letters and numbers (A–Z, 0–9).");
+        alert("❌ Password must contain only letters and numbers (A–Z, 0–9).");
         return;
       }
 
