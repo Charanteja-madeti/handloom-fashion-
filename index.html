@@ -3,180 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Handloom Heritage – Login</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-
+  <title>Handloom Heritage | Login</title>
   <style>
     body {
-      background-color: #f4ede0;
-      font-family: 'Poppins', sans-serif;
       margin: 0;
-    }
-
-    .login-container {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ffb347, #e07b39);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-        url("https://i.imgur.com/z7BctvX.jpg");
-      background-size: cover;
-      background-position: center;
     }
 
-    .login-card {
-      background-color: #fffaf3;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    .login-container {
+      background-color: #fff8ef;
+      padding: 40px 35px;
+      border-radius: 15px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
       width: 350px;
       text-align: center;
-      border-top: 6px solid #a0522d;
-      animation: fadeIn 1s ease-in-out;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(-20px);}
-      to {opacity: 1; transform: translateY(0);}
+    h1 {
+      color: #b34700;
+      margin-bottom: 10px;
+      font-size: 28px;
+      letter-spacing: 1px;
     }
 
-    .title {
-      color: #6b2e1f;
-      font-family: 'Merriweather', serif;
-      margin-bottom: 5px;
-      font-size: 26px;
-    }
-
-    .subtitle {
+    p {
+      color: #6b3e00;
+      margin-bottom: 25px;
       font-size: 14px;
-      color: #5a4d41;
+    }
+
+    .form-group {
+      text-align: left;
       margin-bottom: 20px;
     }
 
     label {
       display: block;
-      text-align: left;
-      margin: 8px 0 4px 0;
-      color: #4a3b31;
-      font-weight: 600;
+      font-size: 14px;
+      color: #5a2f00;
+      margin-bottom: 6px;
     }
 
-    input[type="text"],
     input[type="email"],
+    input[type="text"],
     input[type="password"] {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #bfa38a;
+      padding: 10px 12px;
+      border: 1px solid #d9a06a;
       border-radius: 8px;
-      outline: none;
-      margin-bottom: 10px;
+      background-color: #fffdf9;
       font-size: 14px;
-      background-color: #fff8f0;
-      transition: border 0.3s ease;
+      color: #4a2b00;
+      transition: all 0.3s ease;
     }
 
     input:focus {
-      border-color: #a0522d;
+      border-color: #b34700;
+      outline: none;
+      box-shadow: 0 0 8px rgba(179, 71, 0, 0.3);
     }
 
-    .remember-row {
+    .remember {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
       gap: 8px;
-      margin-bottom: 15px;
-      color: #4a3b31;
+      font-size: 13px;
+      color: #5a2f00;
     }
 
-    .login-btn {
+    button {
       width: 100%;
-      padding: 10px;
-      background-color: #a0522d;
-      color: #fff;
+      padding: 12px;
+      background-color: #b34700;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
-    .login-btn:hover {
-      background-color: #8b3e1c;
+    button:hover {
+      background-color: #e07b39;
       transform: translateY(-2px);
     }
 
-    .signup-link {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #4a3b31;
+    .links {
+      margin-top: 20px;
+      font-size: 13px;
     }
 
-    .signup-link a {
-      color: #a0522d;
+    .links a {
+      color: #b34700;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
     }
 
-    .signup-link a:hover {
+    .links a:hover {
       text-decoration: underline;
     }
 
-    @media (max-width: 450px) {
-      .login-card {
+    @media (max-width: 480px) {
+      .login-container {
         width: 90%;
-        padding: 30px;
+        padding: 30px 25px;
       }
-      .title {
-        font-size: 22px;
+      h1 {
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
   <div class="login-container">
-    <div class="login-card">
-      <h2 class="title">Handloom Heritage</h2>
-      <p class="subtitle">Welcome back! Please log in.</p>
-
-      <form id="loginForm">
-        <label>Email</label>
+    <h1>Handloom Heritage</h1>
+    <p>Login to continue your journey through tradition 🌾</p>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
         <input type="email" id="email" placeholder="Enter your email" required />
-
-        <label>Username</label>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
         <input type="text" id="username" placeholder="Enter your username" required />
-
-        <label>Password</label>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
         <input type="password" id="password" placeholder="Enter your password" required />
-
-        <div class="remember-row">
-          <input type="checkbox" id="remember" />
-          <span>Remember Me</span>
-        </div>
-
-        <button type="submit" class="login-btn">Login</button>
-      </form>
-
-      <p class="signup-link">
-        Don’t have an account? <a href="signup.html">Sign up here</a>
-      </p>
-    </div>
+      </div>
+      <div class="form-group remember">
+        <input type="checkbox" id="remember" />
+        <label for="remember">Remember me</label>
+      </div>
+      <button type="submit">Login</button>
+      <div class="links">
+        <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
+      </div>
+    </form>
   </div>
 
   <script>
     document.getElementById("loginForm").addEventListener("submit", function (e) {
       e.preventDefault();
-
       const email = document.getElementById("email").value.trim();
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
 
       if (email && username && password) {
-        alert("Login Successful!");
-        window.location.href = "index.html"; // Redirect to home page
+        alert("Login successful! Redirecting to Handloom Heritage...");
+        window.location.href = "home.html";
       } else {
-        alert("Please fill in all fields.");
+        alert("Please fill in all the details correctly.");
       }
     });
   </script>
