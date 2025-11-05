@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up - Handloom Heritage</title>
   <style>
     body {
@@ -19,9 +19,8 @@
       padding: 35px 40px;
       border-radius: 15px;
       box-shadow: 0 6px 25px rgba(0,0,0,0.2);
-      width: 380px;
+      width: 400px;
       text-align: center;
-      transition: 0.3s ease;
     }
     h1 {
       color: #b34700;
@@ -34,7 +33,7 @@
       margin-top: 15px;
       font-weight: 600;
     }
-    input {
+    input, select {
       width: 100%;
       padding: 10px;
       border: 1px solid #d9a06a;
@@ -42,7 +41,7 @@
       margin-top: 5px;
       font-size: 15px;
     }
-    input:focus {
+    input:focus, select:focus {
       border-color: #b34700;
       outline: none;
       box-shadow: 0 0 5px rgba(179,71,0,0.4);
@@ -72,32 +71,34 @@
     }
     #otpSection {
       display: none;
-      animation: fadeIn 0.4s ease-in;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(-10px);}
-      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
   <div class="signup-container">
-    <h1>Customer Sign Up</h1>
+    <h1>Create Account</h1>
     <form id="signupForm">
+      <label for="role">Select Role</label>
+      <select id="role" required>
+        <option value="">-- Select Role --</option>
+        <option value="admin">Admin</option>
+        <option value="customer">Customer</option>
+      </select>
+
       <label for="name">Full Name</label>
-      <input type="text" id="name" required placeholder="Enter your name">
+      <input type="text" id="name" required placeholder="Enter your full name" />
 
       <label for="email">Gmail Address</label>
-      <input type="email" id="email" required placeholder="example@gmail.com">
+      <input type="email" id="email" required placeholder="example@gmail.com" />
 
       <label for="password">Password</label>
-      <input type="password" id="password" required placeholder="Create a password">
+      <input type="password" id="password" required placeholder="Create a password" />
 
       <button type="button" id="sendOtpBtn">Send OTP</button>
 
       <div id="otpSection">
         <label for="otpInput">Enter OTP</label>
-        <input type="text" id="otpInput" maxlength="6" placeholder="6-digit OTP">
+        <input type="text" id="otpInput" maxlength="6" placeholder="6-digit OTP" />
         <button type="button" id="verifyOtpBtn">Verify & Sign Up</button>
       </div>
     </form>
@@ -107,44 +108,41 @@
     </div>
   </div>
 
-  <!-- ✅ Load EmailJS -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <!-- ✅ Updated EmailJS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    // Initialize EmailJS
-    (function() {
-      emailjs.init("YlK7El4iYhWChZwOU"); // ✅ your public key
+    (function () {
+      emailjs.init({ publicKey: "YlK7El4iYhWChZwOU" }); // ✅ your EmailJS public key
     })();
 
     let generatedOtp = "";
 
-    // ✅ Send OTP button click
-    document.getElementById("sendOtpBtn").addEventListener("click", function() {
+    document.getElementById("sendOtpBtn").addEventListener("click", function () {
+      const role = document.getElementById("role").value.trim();
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
 
-      if (!name || !email || !password) {
+      if (!role || !name || !email || !password) {
         alert("⚠️ Please fill all fields before sending OTP.");
         return;
       }
 
       if (!email.endsWith("@gmail.com")) {
-        alert("⚠️ Please enter a valid Gmail address (must end with @gmail.com).");
+        alert("⚠️ Please enter a valid Gmail address.");
         return;
       }
 
-      // Generate OTP
       generatedOtp = Math.floor(100000 + Math.random() * 900000);
-      console.log("Generated OTP:", generatedOtp); // For testing
 
       const params = {
         to_email: email,
         otp: generatedOtp,
-        user_name: name
+        user_name: name,
       };
 
-      // ✅ Send OTP via EmailJS (Gmail service)
-      emailjs.send("service_1m1zmal", "template_jt2wcaa", params)
+      emailjs
+        .send("service_1m1zmal", "template_jt2wcaa", params)
         .then(() => {
           alert("✅ OTP sent successfully! Check your Gmail inbox.");
           document.getElementById("otpSection").style.display = "block";
@@ -152,21 +150,38 @@
           document.getElementById("sendOtpBtn").innerText = "OTP Sent";
         })
         .catch((error) => {
-          console.error("❌ EmailJS Error:", error);
-          alert("❌ Failed to send OTP. Check EmailJS Gmail setup & domain.");
+          console.error("❌ Error sending email:", error);
+          alert("❌ Error sending email. Check your EmailJS configuration.");
         });
     });
 
-    // ✅ Verify OTP button click
-    document.getElementById("verifyOtpBtn").addEventListener("click", function() {
+    // ✅ Verify OTP & Save User
+    document.getElementById("verifyOtpBtn").addEventListener("click", function () {
       const enteredOtp = document.getElementById("otpInput").value.trim();
+      const role = document.getElementById("role").value.trim();
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
 
       if (enteredOtp === generatedOtp.toString()) {
-        // Save data locally (for login validation)
-        localStorage.setItem("handloomUser", JSON.stringify({ name, email, password }));
+        let users = JSON.parse(localStorage.getItem("handloomUsers")) || [];
+        users.push({ role, name, email, password });
+        localStorage.setItem("handloomUsers", JSON.stringify(users));
+
+        // ✅ If the new user is an admin → send alert to your Gmail
+        if (role === "admin") {
+          const alertParams = {
+            to_email: "youralert@gmail.com", // ⚠️ Replace with your Gmail address
+            user_name: name,
+            user_email: email,
+          };
+
+          emailjs
+            .send("service_1m1zmal", "template_jt2wcaa", alertParams)
+            .then(() => console.log("📩 Admin alert sent successfully."))
+            .catch((err) => console.error("⚠️ Failed to send admin alert:", err));
+        }
+
         alert("🎉 Signup successful! Redirecting to login...");
         window.location.href = "login.html";
       } else {
