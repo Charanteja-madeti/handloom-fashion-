@@ -1,37 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - Handloom Heritage</title>
   <style>
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
       background: linear-gradient(135deg, #ffb347, #e07b39);
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
+    .floating {
+      position: absolute;
+      font-size: 22px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.25);
+      animation: float 18s linear infinite;
+      user-select: none;
+    }
+    @keyframes float {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(200px, -150px); }
+      50% { transform: translate(-100px, 150px); }
+      75% { transform: translate(-200px, -100px); }
+      100% { transform: translate(0, 0); }
+    }
+    .floating:nth-child(1) { top: 10%; left: 20%; animation-duration: 22s;}
+    .floating:nth-child(2) { top: 60%; left: 10%; animation-duration: 26s;}
+    .floating:nth-child(3) { top: 30%; left: 70%; animation-duration: 20s;}
+    .floating:nth-child(4) { top: 80%; left: 60%; animation-duration: 24s;}
+    .floating:nth-child(5) { top: 40%; left: 40%; animation-duration: 28s;}
     .login-container {
+      position: relative;
       background-color: #fff8ef;
-      padding: 35px 40px;
+      padding: 40px 35px;
       border-radius: 15px;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.2);
-      width: 380px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+      width: 350px;
       text-align: center;
+      z-index: 10;
     }
     h1 {
       color: #b34700;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
+      font-size: 28px;
     }
     label {
       display: block;
       text-align: left;
+      font-size: 14px;
       color: #5a2f00;
       margin-top: 15px;
-      font-weight: 600;
     }
     input {
       width: 100%;
@@ -39,7 +63,6 @@
       border: 1px solid #d9a06a;
       border-radius: 8px;
       margin-top: 5px;
-      font-size: 15px;
     }
     button {
       width: 100%;
@@ -50,11 +73,8 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 16px;
     }
-    button:hover {
-      background-color: #e07b39;
-    }
+    button:hover { background-color: #e07b39; }
     .links {
       margin-top: 15px;
     }
@@ -66,43 +86,47 @@
   </style>
 </head>
 <body>
+  <div class="floating">🧵 Handloom</div>
+  <div class="floating">🧵 Handloom</div>
+  <div class="floating">🧵 Handloom</div>
+  <div class="floating">🧵 Handloom</div>
+  <div class="floating">🧵 Handloom</div>
+
   <div class="login-container">
     <h1>Login</h1>
     <form id="loginForm">
-      <label for="email">Email</label>
-      <input type="email" id="email" required placeholder="example@gmail.com">
+      <label>Email</label>
+      <input type="email" id="email" placeholder="example@xhandloom.com" required />
 
-      <label for="password">Password</label>
-      <input type="password" id="password" required placeholder="Enter your password">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Enter password" required />
 
       <button type="submit">Login</button>
     </form>
-
     <div class="links">
-      Don’t have an account? <a href="signup.html">Sign up here</a>
+      Don't have an account? <a href="signup.html">Sign up here</a>
     </div>
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
+    document.getElementById("loginForm").addEventListener("submit", function(e){
       e.preventDefault();
 
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
+      const storedUser = JSON.parse(localStorage.getItem("handloomUser"));
 
-      const users = JSON.parse(localStorage.getItem("handloomUsers")) || [];
-      const user = users.find(u => u.email === email && u.password === password);
-
-      if (!user) {
-        alert("❌ Invalid email or password!");
+      if (!storedUser) {
+        alert("❌ Account doesn't exist. Please sign up first.");
         return;
       }
 
-      // Save logged in user
-      localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-      alert("✅ Login successful!");
-      window.location.href = "home.html"; // redirect to your homepage
+      if (storedUser.email === email && storedUser.password === password) {
+        alert("✅ Login successful! Welcome to Handloom Heritage.");
+        window.location.href = "home.html";
+      } else {
+        alert("❌ Invalid credentials or account doesn't exist.");
+      }
     });
   </script>
 </body>
