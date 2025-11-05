@@ -99,13 +99,13 @@
         return;
       }
 
-      // ✅ Save user to localStorage
       let users = JSON.parse(localStorage.getItem("handloomUsers")) || [];
 
       // Check if email already exists
       const existingUser = users.find(user => user.email === email);
       if (existingUser) {
         alert("⚠️ This email is already registered. Please login instead.");
+        window.location.href = "login.html"; // redirect directly
         return;
       }
 
@@ -113,7 +113,7 @@
       localStorage.setItem("handloomUsers", JSON.stringify(users));
 
       alert("✅ Signup successful! You can now login.");
-      window.location.href = "login.html";
+      window.location.href = "login.html"; // redirect after signup
     });
   </script>
 </body>
