@@ -124,13 +124,47 @@
       box-shadow: 0 8px 15px rgba(0,0,0,0.2);
     }
 
-    /* Optional: Footer */
+    /* Footer */
     footer {
       text-align: center;
       padding: 15px 0;
       background-color: #FF8C00;
       color: white;
       font-weight: bold;
+    }
+
+    /* 🌾 Search Bar Styles */
+    .search-container {
+      text-align: center;
+      margin: 25px auto;
+      width: 100%;
+    }
+
+    .search-box {
+      width: 60%;
+      max-width: 600px;
+      padding: 12px 18px;
+      font-size: 16px;
+      border: 2px solid #b34700;
+      border-radius: 30px;
+      outline: none;
+      background: #fff8ef;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      font-family: "Poppins", sans-serif;
+    }
+
+    .search-box:focus {
+      border-color: #e07b39;
+      box-shadow: 0 0 10px rgba(224, 123, 57, 0.3);
+    }
+
+    .no-results {
+      text-align: center;
+      font-size: 18px;
+      color: #5a2f00;
+      margin-top: 30px;
+      display: none;
     }
   </style>
 </head>
@@ -143,302 +177,189 @@
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="products.html" class="active">Products</a>
-          <a href="basket.html">🛒 Basket</a>
+        <a href="basket.html">🛒 Basket</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
-<!-- 🌾 Handloom Search Bar -->
-<style>
-  .search-container {
-    text-align: center;
-    margin: 25px auto;
-    width: 100%;
-  }
 
-  .search-box {
-    width: 60%;
-    max-width: 600px;
-    padding: 12px 18px;
-    font-size: 16px;
-    border: 2px solid #b34700;
-    border-radius: 30px;
-    outline: none;
-    background: #fff8ef;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-    font-family: "Poppins", sans-serif;
-  }
-
-  .search-box:focus {
-    border-color: #e07b39;
-    box-shadow: 0 0 10px rgba(224, 123, 57, 0.3);
-  }
-
-  .no-results {
-    text-align: center;
-    font-size: 18px;
-    color: #5a2f00;
-    margin-top: 30px;
-    display: none;
-  }
-</style>
-
-<div class="search-container">
-  <input
-    type="text"
-    id="searchInput"
-    class="search-box"
-    placeholder="🔍 Search Handloom Products..."
-  />
-</div>
-
-<p class="no-results" id="noResults">No matching products found.</p>
-
-<script>
-  const searchInput = document.getElementById("searchInput");
-  const noResults = document.getElementById("noResults");
-
-  // Make sure your product items have class="product-card" and names inside class="product-name"
-  searchInput.addEventListener("keyup", () => {
-    const filter = searchInput.value.toLowerCase();
-    const products = document.querySelectorAll(".product-card");
-    let visibleCount = 0;
-
-    products.forEach((product) => {
-      const name = product.querySelector(".product-name").textContent.toLowerCase();
-      if (name.includes(filter)) {
-        product.style.display = "block";
-        visibleCount++;
-      } else {
-        product.style.display = "none";
-      }
-    });
-
-    // Show message if nothing matches
-    noResults.style.display = visibleCount === 0 ? "block" : "none";
-  });
-</script>
+  <!-- 🌾 Handloom Search Bar -->
+  <div class="search-container">
+    <input
+      type="text"
+      id="searchInput"
+      class="search-box"
+      placeholder="🔍 Search Handloom Products..."
+    />
+  </div>
+  <p class="no-results" id="noResults">No matching products found.</p>
 
   <main class="products-grid container">
     <div class="product">
       <img src="img2.jpeg" alt="bag">
       <h3>Bag</h3>
       <p>Price: ₹1200</p>
-    <button class="add-to-basket" 
-          data-name="bag" 
-          data-price="1200" 
-          data-image="img2.jpeg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Bag" data-price="1200" data-image="img2.jpeg">Add to Basket</button>
     </div>
 
     <div class="product">
       <img src="img3.jpeg" alt="saree bulk">
       <h3>Each Saree</h3>
       <p>Price: ₹1500</p>
-      <button class="add-to-basket" 
-          data-name="Saree bulk" 
-          data-price="1500" 
-          data-image="img3.jpeg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Each Saree" data-price="1500" data-image="img3.jpeg">Add to Basket</button>
     </div>
 
     <div class="product">
       <img src="img4.jpeg" alt="saree">
-      <h3>saree</h3>
+      <h3>Saree</h3>
       <p>Price: ₹5500</p>
-      <button class="add-to-basket" 
-          data-name="saree" 
-          data-price="5500" 
-          data-image="img4.jpeg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Saree" data-price="5500" data-image="img4.jpeg">Add to Basket</button>
     </div>
 
     <div class="product">
       <img src="img5.webp" alt="saree">
-      <h3>saree</h3>
+      <h3>Saree</h3>
       <p>Price: ₹6500</p>
-     <button class="add-to-basket" 
-          data-name="saree" 
-          data-price="6500" 
-          data-image="img5.webp">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Saree" data-price="6500" data-image="img5.webp">Add to Basket</button>
     </div>
-      <div class="product">
+
+    <div class="product">
       <img src="img6.jpg" alt="shirt">
-      <h3>shirt</h3>
+      <h3>Shirt</h3>
       <p>Price: ₹1000</p>
-     <button class="add-to-basket" 
-          data-name="shirt" 
-          data-price="1000" 
-          data-image="img6.jpg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Shirt" data-price="1000" data-image="img6.jpg">Add to Basket</button>
     </div>
-      <div class="product">
+
+    <div class="product">
       <img src="img7.jpg" alt="shirt handloom">
       <h3>Shirt</h3>
       <p>Price: ₹900</p>
-     <button class="add-to-basket" 
-          data-name="shirt handloom" 
-          data-price="900" 
-          data-image="img7.jpg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Shirt" data-price="900" data-image="img7.jpg">Add to Basket</button>
     </div>
-      <div class="product">
+
+    <div class="product">
       <img src="img8.jpeg" alt="slippers">
-      <h3>slippers</h3>
+      <h3>Slippers</h3>
       <p>Price: ₹700</p>
-     <button class="add-to-basket" 
-          data-name="slippers" 
-          data-price="700" 
-          data-image="img8.jpeg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Slippers" data-price="700" data-image="img8.jpeg">Add to Basket</button>
     </div>
-      <div class="product">
+
+    <div class="product">
       <img src="img10.jpeg" alt="slipper">
-      <h3>slipper</h3>
+      <h3>Slipper</h3>
       <p>Price: ₹600</p>
-     <button class="add-to-basket" 
-          data-name="slipper" 
-          data-price="600" 
-          data-image="img10.jpeg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Slipper" data-price="600" data-image="img10.jpeg">Add to Basket</button>
     </div>
-      <div class="product">
+
+    <div class="product">
       <img src="img11.jpg" alt="Cushions">
       <h3>Cushions</h3>
       <p>Price: ₹350</p>
-    <button class="add-to-basket" 
-          data-name="Cushions" 
-          data-price="350" 
-          data-image="img11.jpg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Cushions" data-price="350" data-image="img11.jpg">Add to Basket</button>
     </div>
-      <div class="product">
+
+    <div class="product">
       <img src="img12.webp" alt="wall hanging">
-      <h3>wall hanging</h3>
+      <h3>Wall Hanging</h3>
       <p>Price: ₹250</p>
-    <button class="add-to-basket" 
-          data-name="wall hanging" 
-          data-price="250" 
-          data-image="img12.webp">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Wall Hanging" data-price="250" data-image="img12.webp">Add to Basket</button>
     </div>
-      <div class="product">
+
+    <div class="product">
       <img src="img13.jpg" alt="decoration items">
-      <h3>decoration item</h3>
+      <h3>Decoration Item</h3>
       <p>Price: ₹200</p>
-    <button class="add-to-basket" 
-          data-name="decoration item" 
-          data-price="200" 
-          data-image="img13.jpg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Decoration Item" data-price="200" data-image="img13.jpg">Add to Basket</button>
     </div>
-      <div class="product">
+
+    <div class="product">
       <img src="img14.jpg" alt="handloom stoles">
-      <h3>handloom stoles</h3>
+      <h3>Handloom Stoles</h3>
       <p>Price: ₹200</p>
-    <button class="add-to-basket" 
-          data-name="handloom stoles" 
-          data-price="200" 
-          data-image="img14.jpg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Handloom Stoles" data-price="200" data-image="img14.jpg">Add to Basket</button>
     </div>
-      <div class="product">
+
+    <div class="product">
       <img src="img15.jpg" alt="Towel">
       <h3>Towel</h3>
       <p>Price: ₹150</p>
-    <button class="add-to-basket" 
-          data-name="Towel" 
-          data-price="150" 
-          data-image="img15.jpg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Towel" data-price="150" data-image="img15.jpg">Add to Basket</button>
     </div>
-  <div class="product">
+
+    <div class="product">
       <img src="img16.jpeg" alt="Hats">
       <h3>Hats</h3>
       <p>Price: ₹400</p>
-    <button class="add-to-basket" 
-          data-name="Hats" 
-          data-price="400" 
-          data-image="img16.jpeg">
-    Add to Basket
-  </button>
+      <button class="add-to-basket" data-name="Hats" data-price="400" data-image="img16.jpeg">Add to Basket</button>
     </div>
-
-
-    <!-- Add more products as needed -->
   </main>
 
   <footer>
     <p>&copy; 2025 Handloom Fashion. All Rights Reserved.</p>
   </footer>
 
- <script>
-const addButtons = document.querySelectorAll('.add-to-basket');
+  <!-- ✅ Fixed Search Functionality -->
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const noResults = document.getElementById("noResults");
 
-addButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const product = {
-      name: button.dataset.name,
-      price: parseInt(button.dataset.price),
-      image: button.dataset.image,
-      quantity: 1
-    };
+    searchInput.addEventListener("keyup", () => {
+      const filter = searchInput.value.toLowerCase();
+      const products = document.querySelectorAll(".product");
+      let visibleCount = 0;
 
-    // Get current basket from localStorage
-    let basket = JSON.parse(localStorage.getItem('basket')) || [];
+      products.forEach((product) => {
+        const name = product.querySelector("h3").textContent.toLowerCase();
+        if (name.includes(filter)) {
+          product.style.display = "block";
+          visibleCount++;
+        } else {
+          product.style.display = "none";
+        }
+      });
 
-    // Check if product already exists
-    const existing = basket.find(p => p.name === product.name);
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      basket.push(product);
-    }
+      noResults.style.display = visibleCount === 0 ? "block" : "none";
+    });
+  </script>
 
-    localStorage.setItem('basket', JSON.stringify(basket));
-    alert(`${product.name} added to basket!`);
-  });
-});
-</script>
+  <!-- 🧺 Basket Script -->
+  <script>
+    const addButtons = document.querySelectorAll('.add-to-basket');
 
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/68d61e4927d62b194f180193/1j626ck0e';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+    addButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const product = {
+          name: button.dataset.name,
+          price: parseInt(button.dataset.price),
+          image: button.dataset.image,
+          quantity: 1
+        };
+
+        let basket = JSON.parse(localStorage.getItem('basket')) || [];
+        const existing = basket.find(p => p.name === product.name);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          basket.push(product);
+        }
+
+        localStorage.setItem('basket', JSON.stringify(basket));
+        alert(`${product.name} added to basket!`);
+      });
+    });
+  </script>
+
+  <!-- 💬 Tawk.to Chat Support -->
+  <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/68d61e4927d62b194f180193/1j626ck0e';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
