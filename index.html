@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Handloom Heritage</title>
   <style>
     body {
@@ -19,9 +19,8 @@
       padding: 35px 40px;
       border-radius: 15px;
       box-shadow: 0 6px 25px rgba(0,0,0,0.2);
-      width: 400px;
+      width: 380px;
       text-align: center;
-      transition: 0.3s ease;
     }
     h1 {
       color: #b34700;
@@ -42,11 +41,6 @@
       margin-top: 5px;
       font-size: 15px;
     }
-    input:focus {
-      border-color: #b34700;
-      outline: none;
-      box-shadow: 0 0 5px rgba(179,71,0,0.4);
-    }
     button {
       width: 100%;
       margin-top: 20px;
@@ -57,7 +51,6 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
-      transition: background-color 0.3s;
     }
     button:hover {
       background-color: #e07b39;
@@ -70,25 +63,19 @@
       text-decoration: none;
       font-weight: 600;
     }
-    #message {
-      margin-top: 10px;
-      font-size: 14px;
-      font-weight: 500;
-    }
   </style>
 </head>
 <body>
   <div class="login-container">
     <h1>Login</h1>
     <form id="loginForm">
-      <label for="email">Gmail Address</label>
+      <label for="email">Email</label>
       <input type="email" id="email" required placeholder="example@gmail.com">
 
       <label for="password">Password</label>
       <input type="password" id="password" required placeholder="Enter your password">
 
       <button type="submit">Login</button>
-      <p id="message"></p>
     </form>
 
     <div class="links">
@@ -96,18 +83,25 @@
     </div>
   </div>
 
-  <!-- ✅ Shared Logic -->
-  <script src="app.js"></script>
   <script>
-    // Handle login with shared function
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
-      const message = document.getElementById("message");
 
-      handleLogin(email, password, message);
+      const users = JSON.parse(localStorage.getItem("handloomUsers")) || [];
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        alert("❌ Invalid email or password!");
+        return;
+      }
+
+      // ✅ Save logged-in user
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      alert("✅ Login successful!");
+      window.location.href = "home.html"; // redirect to your home page
     });
   </script>
 </body>
